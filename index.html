@@ -8,25 +8,79 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Content/B_RED.png">
 </head>
 <body>
-    <header>
-        <img id="logo" src="Content/logo.png" alt="Logo">
+    <header style="text-align: center; background-color: black; padding: 20px;">
+        <img id="logo" src="Content/logo123.png" alt="Logo" style="height: 150px; padding-top: 20px;">
     </header>
     <section class="tabs">
         <ul>
+            <!-- About tab (updated) -->
             <li>
-                <button class="collapsible">About Me</button>
+                <button class="collapsible">About</button>
                 <div class="collapsible-content">
-                    <p>I’m Birk Alexandersson—aka BALEX. I design with the future in mind, using VR, AI, and digital tools to shape new realities. My work spans VFX, product design, fashion, and blockchain, always pushing boundaries. I founded the world’s first digital footwear brand and continue to explore what’s next.
+                    <p>
+                        BALEX is an Oslo-based industrial designer, trained in Denmark, with a strong focus on the future of digital and physical design. Specializing in blockchain technology, tokenization, and virtual fashion, BALEX explores new possibilities where design, ownership, and technology seamlessly converge.
                         <br><br>
-                        Let’s create the future.</p>
+                        At the center of this work is CALYPTO, a pioneering project that merges urban tech-wear, digital fashion, and blockchain innovation to redefine the relationship between physical and virtual identities.
+                        <br><br>
+                        With a multidisciplinary approach spanning industrial design, art, and music, BALEX is committed to shaping the next era of creativity in an increasingly digital world.
+                    </p>
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="http://www.calypto.no" target="_blank" class="discover-btn">CALYPTO</a>
+                    </div>
                 </div>
             </li>
+            <!-- Visuals tab -->
+            <li>
+                <button class="collapsible">Visuals</button>
+                <div class="collapsible-content">
+                    <p style="font-family: 'NeueHaasDisplayRoman', sans-serif;">[Your visuals content goes here. Add content as needed.]</p>
+                    <!-- New Visuals button under Visuals tab -->
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="Visuals.html" class="discover-btn">Visuals</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Viritual Shoes tab -->
+            <li>
+                <button class="collapsible">Viritual Shoes</button>
+                <div class="collapsible-content" id="viritual-shoes-text">
+                    <div class="collection-container" style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <div class="video-container" style="width: 100%; text-align: center;">
+                            <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+                                <source src="Content/MP4/SPLASH.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="text-container" style="width: 100%; text-align: center;">
+                            <p>During the NFT boom, I explored the possibilities of digital footwear, designing and selling a collection of virtual shoes. The result? A wide-ranging study of aesthetics, materials, and form – pushing the boundaries of design beyond physical limits.</p>
+                        </div>
+                    </div>
+                    <!-- Moved Here button into Viritual Shoes tab -->
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="ShoeCollection.html" class="discover-btn">Here</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Music tab -->
+            <li>
+                <button class="collapsible">Music</button>
+                <div class="collapsible-content" id="music-content" style="text-align: center;">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/balexxxx/cosmic-sensations&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false">
+                    </iframe>
+                    <!-- Added new SoundCloud player -->
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+                      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/balexxxx/doow-i-dovn-groovy-mix-101&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false">
+                    </iframe>
+                </div>
+            </li>
+            <!-- Contact tab -->
             <li>
                 <button class="collapsible">Contact</button>
                 <div class="collapsible-content">
-                    <p>
+                    <p style="font-family: 'NeueHaasDisplayRoman', sans-serif;">
                         <ion-icon name="mail-outline"></ion-icon> <span>balex.digital@gmail.com</span><br>
                         <ion-icon name="call-outline"></ion-icon> <span>+47 973 08 204</span><br>
                         <a href="https://www.instagram.com/balex.io/?hl=en" target="_blank" style="text-decoration:none; color: white;">
@@ -35,6 +89,9 @@
                         <a href="https://www.linkedin.com/in/birk-alexandersson-a4068418a/" target="_blank" style="text-decoration:none; color: white;">
                             <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
                         </a>
+                    </p>
+                    <p style="font-family: 'NeueHaasDisplayBold', sans-serif; margin-top: 20px;">
+                        Whether you're interested in working together, collaborating, or have any questions, I’d love to hear from you. Reach out and let’s connect.
                     </p>
                 </div>
             </li>

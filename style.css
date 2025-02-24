@@ -24,10 +24,10 @@ body {
 
 /* new styles for logo fade-in and sizing */
 #logo {
+    width: 150px;
+    height: auto;
     opacity: 0;
     animation: fade-in 1s forwards;
-    width: 400px;
-    height: 400px;
 }
 
 @keyframes fade-in {
