@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header>
+        <img src="Content/logo123.png" alt="Logo123" style="height: 150px; padding-top: 20px;">
+    </header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoe Collection</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Grid layout for videos */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .video-grid video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.3s ease; /* Add transition for zoom effect */
+    }
+    .video-grid video:hover {
+      transform: scale(1.05); /* Slight zoom on hover */
+    }
+    /* Increase video size on desktop */
+    @media only screen and (min-width: 1024px) {
+      .video-item video {
+        max-width: 800px;
+      }
+    }
+  </style>
+</head>
+<body style="margin-top: 0;">
+  <header style="text-align: center; background-color: #000; padding: 0; margin: 0 0 40px 0;">
+    <h1 style="color: white;">Viritual Shoe Collection</h1>
+    <p style="max-width: 500px; margin: 0 auto; padding: 5px; color: white; margin-bottom: 20px;">
+      A visionary lineup of NFT-based virtual shoes, crafted in VR for the metaverse. Merging cutting-edge design with digital ownership, BALEX redefines footwear in a world beyond limits. Exclusive. Futuristic. Limitless.
+    </p>
+  </header>
+  <main>
+    <div class="video-grid">
+      <!-- Video item for 5250 -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/5250.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">5250</p>
+        </div>
+      </div>
+      <!-- Video item for BIONIC -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/BIONIC.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">BIONIC</p>
+        </div>
+      </div>
+      <!-- Video item for DARK MATTER -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/DARK MATTER.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">DARK MATTER</p>
+        </div>
+      </div>
+      <!-- Video item for PYTON -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/PYTON.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">PYTON</p>
+        </div>
+      </div>
+      <!-- Video item for SPLASH -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/SPLASH.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">SPLASH</p>
+        </div>
+      </div>
+      <!-- Video item for V-ARCANE -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/V-ARCANE.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">V-ARCANE</p>
+        </div>
+      </div>
+      <!-- Video item for FLANGER -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/FLANGER.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">FLANGER</p>
+        </div>
+      </div>
+      <!-- Video item for TERRA JONES -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/TERRA JONES.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">TERRA JONES</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_1.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/BEEP DUCK.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">BEEP DUCK</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_2.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/MARS BOOTS.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">MARS BOOTS</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_3.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/TIM.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">TIM</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_4.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/DOOM.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">SP DOOM</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_5.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/CALYPTO BOOT.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">CALYPTO BOOT</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_A.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/BILLIONARE CONDUCT.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">BILLIONARE CONDUCT</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_B.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/CYBER GHONG.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">CYBER GHONG</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_C.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/BASICALLY.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">BASICALLY</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_D.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/NIBA.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">NIBA</p>
+        </div>
+      </div>
+      <!-- New video item for NEW_VIDEO_E.webm -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/PRESTINE.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">
+            ▶
+          </button>
+          <p class="video-title" style="margin: 0; color: white;">PRESTINE</p>
+        </div>
+      </div>
+      <!-- Example: New video item for an additional MP4 file -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+            <source src="Content/MP4/TEMPLAR.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+            <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+            <p class="video-title" style="margin: 0; color: white;">TEMPLAR</p>
+        </div>
+      </div>
+      <!-- New video items for additional files -->
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/WOW.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">WOW</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/UNITE.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">UNITE</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/SPRING.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">SPRING</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/SKYLAB.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">SKYLAB</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/PRESTINE B25.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">PRESTINE B25</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/MARS TROOPER.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">MARS TROOPER</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/FLAKY BONES.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">FLAKY BONES</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/DGEN.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">DGEN</p>
+        </div>
+      </div>
+
+      <div class="video-item" style="text-align: center;">
+        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
+          <source src="Content/MP4/C-VERSE X.mp4" type="video/mp4">
+        </video>
+        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
+          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
+          <p class="video-title" style="margin: 0; color: white;">C-VERSE X</p>
+        </div>
+      </div>
+    </div> <!-- end of video-grid -->
+    <!-- Home button container using the style from "discover-btn" -->
+    <div class="home-button-container" style="text-align: center; margin: 20px 0; padding-top: 20px;">
+        <a href="index.html" class="discover-btn" style="padding: 8px 16px; margin: 30px;">Home</a>
+    </div>
+  </main>
+  <footer style="text-align: center; padding: 20px; background-color: #000; color: white;">
+      <p>&copy; 2023 BALEX - All rights reserved.</p>
+  </footer>
+</body>
+</html>
