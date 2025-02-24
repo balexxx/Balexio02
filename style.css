@@ -1,125 +1,62 @@
-/* Load local fonts from the fonts folder */
+/* Load local fonts */
 @font-face {
     font-family: "NeueHaasDisplayBold";
     src: url("Fonts/NeueHaasDisplayBold.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
-
 @font-face {
     font-family: "NeueHaasDisplayXXThin";
     src: url("Fonts/NeueHaasDisplayXXThin.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
 }
 
-/* Ensure all text elements use the locally loaded font */
+/* Global Styles */
 body {
-    font-family: "NeueHaasDisplayBold", sans-serif; /* update to use NeueHaasDisplayBold for all text */
+    font-family: "NeueHaasDisplayBold", sans-serif;
     background-color: black;
-    max-width: 1200px;      /* limit the width */
-    margin: 0 auto;         /* center the content */
-    padding: 0 20px;        /* add side padding */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-
-/* new styles for logo fade-in and sizing */
 #logo {
     width: 150px;
     height: auto;
     opacity: 0;
     animation: fade-in 1s forwards;
 }
-
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
-/* update header styling for logo centering and font */
 header {
     text-align: center;
-    font-family: "NeueHaasDisplayBold", sans-serif;
+    font-family: "Neue Haas Grotesk Bold", sans-serif;
 }
 
-/* new media query for mobile devices */
+/* Responsive adjustments */
 @media only screen and (max-width: 768px) {
     #logo {
         width: 200px;
         height: 200px;
     }
-    /* New adjustments for mobile font sizes: */
     .collapsible {
-        font-size: 24px;  /* reduced from 32px */
+        font-size: 24px;
     }
     .collapsible-content {
-        font-size: 16px;  /* reduced from 20px */
-    }
-    .carousel button {
-        display: none;
+        font-size: 16px;
     }
 }
 
-/* ...existing styles for dropdown and collapsible tabs remain unchanged ... */
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-nav ul li {
-    display: inline-block;
-    position: relative;
-}
-.dropbtn {
-    text-decoration: none;
-    color: white;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    padding: 10px;
-    z-index: 1;
-    left: 0;
-}
-.dropdown-content p {
-    margin: 0;
-    color: black;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* new collapsible tab styling: black background and larger text */
+/* Collapsible Tabs */
 .collapsible {
     background-color: black;
     border: none;
     color: white;
     font-size: 32px;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 10px 15px 10px 50px;
     text-align: left;
-    position: relative;
-    padding-left: 50px;
-    font-family: "NeueHaasDisplayBold", sans-serif; /* updated font for the tab */
-}
+    }
 .collapsible:focus {
     outline: none;
-}
-.collapsible-content {
-    display: none;
-    padding: 20px;
-    background-color: black;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-    text-align: justify;
-    border-top: 2px solid #ffffff;
-}
-.collapsible-content p {
-    margin: 0;
-    font-style: italic;
 }
 .collapsible::before {
     content: "▸";
@@ -132,10 +69,24 @@ nav ul li {
 .collapsible.active::before {
     transform: rotate(90deg);
 }
+.collapsible-content {
+    display: none;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: justify;
+    }
+.collapsible-content p {
+    margin: 0;
+    font-style: italic;
+}
 
-/* new tabs container styling */
+/* Tabs Container */
 .tabs {
     margin-top: 20px;
+    margin-bottom: 0;
 }
 .tabs ul {
     list-style: none;
@@ -146,73 +97,19 @@ nav ul li {
     margin-bottom: 10px;
 }
 
-/* Carousel styling updated for peek and fade effect */
-.carousel {
-    position: relative;
-    margin: 40px auto;  /* centers the carousel */
-    max-width: 600px;
-    overflow: hidden;
-}
-
-/* Each slide takes 90% of the carousel width with a 10% gap for the next slide */
-.carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-.slide {
-    min-width: 90%;
-    margin-right: 10%;
-    box-sizing: border-box;
-    opacity: 0.5; /* default faded */
-    position: relative;
-}
-.slide.active {
-    opacity: 1; /* fully opaque for active slide */
-}
-
-/* Update slide title styling to display below the video using a lighter font */
-.slide-title {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    font-family: "NeueHaasDisplayXXThin", sans-serif; /* use lighter font for medium look */
-    font-size: 24px;   /* increase font-size for emphasis */
+/* Discover Button (e.g. CALYPTO button) */
+.discover-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #222;
     color: white;
-    position: static; /* remove absolute positioning */
-    text-transform: uppercase;  /* added for capital letters */
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.discover-btn:hover {
+    background-color: #555;
+    transform: scale(1.05);
 }
 
-/* Add a fading overlay on the right edge */
-.carousel::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(to left, black, transparent);
-    pointer-events: none;
-}
-
-/* Adjust carousel navigation buttons to be positioned far off to the sides */
-.carousel button {
-    background: none;
-    border: none;
-    color: white;      /* ensure arrows are white */
-    padding: 0;
-    font-size: 25px;   /* retains increased icon size */
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 10;
-    display: block;
-}
-.carousel .prev {
-    left: 50px;  /* moved inside from the left edge */
-}
-.carousel .next {
-    right: 50px; /* moved inside from the right edge */
-}
-
-/* ...existing styles... */
+/* ...Any additional code used by your pages remains... */
