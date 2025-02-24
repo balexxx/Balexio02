@@ -1,10 +1,11 @@
-/* Load local fonts */
+/* Load local fonts from the fonts folder */
 @font-face {
     font-family: "NeueHaasDisplayBold";
     src: url("fonts/NeueHaasDisplayBold.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "NeueHaasDisplayXXThin";
     src: url("fonts/NeueHaasDisplayXXThin.ttf") format("truetype");
@@ -12,32 +13,85 @@
     font-style: normal;
 }
 
-/* Global styles */
+/* Ensure all text elements use the locally loaded font */
 body {
-    font-family: "NeueHaasDisplayBold", sans-serif;
+    font-family: "NeueHaasDisplayBold", sans-serif; /* update to use NeueHaasDisplayBold for all text */
     background-color: black;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1200px;      /* limit the width */
+    margin: 0 auto;         /* center the content */
+    padding: 0 20px;        /* add side padding */
 }
 
-/* Header styling */
+/* new styles for logo fade-in and sizing */
+#logo {
+    opacity: 0;
+    animation: fade-in 1s forwards;
+    width: 400px;
+    height: 400px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* update header styling for logo centering and font */
 header {
     text-align: center;
     font-family: "NeueHaasDisplayBold", sans-serif;
 }
 
-/* Responsive adjustments */
+/* new media query for mobile devices */
 @media only screen and (max-width: 768px) {
+    #logo {
+        width: 200px;
+        height: 200px;
+    }
+    /* New adjustments for mobile font sizes: */
     .collapsible {
-        font-size: 24px;
+        font-size: 24px;  /* reduced from 32px */
     }
     .collapsible-content {
-        font-size: 16px;
+        font-size: 16px;  /* reduced from 20px */
+    }
+    .carousel button {
+        display: none;
     }
 }
 
-/* Collapsible tabs */
+/* ...existing styles for dropdown and collapsible tabs remain unchanged ... */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline-block;
+    position: relative;
+}
+.dropbtn {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    padding: 10px;
+    z-index: 1;
+    left: 0;
+}
+.dropdown-content p {
+    margin: 0;
+    color: black;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* new collapsible tab styling: black background and larger text */
 .collapsible {
     background-color: black;
     border: none;
@@ -48,7 +102,7 @@ header {
     text-align: left;
     position: relative;
     padding-left: 50px;
-    font-family: "NeueHaasDisplayBold", sans-serif;
+    font-family: "NeueHaasDisplayBold", sans-serif; /* updated font for the tab */
 }
 .collapsible:focus {
     outline: none;
@@ -61,7 +115,7 @@ header {
     font-size: 20px;
     line-height: 1.6;
     text-align: justify;
-    border-top: none; /* white line removed */
+    border-top: 2px solid #ffffff;
 }
 .collapsible-content p {
     margin: 0;
@@ -78,13 +132,8 @@ header {
 .collapsible.active::before {
     transform: rotate(90deg);
 }
-.collapsible:hover {
-    background-color: #000000;
-    transform: scale(1.05);
-    color: #00FFFF;
-}
 
-/* Tabs container */
+/* new tabs container styling */
 .tabs {
     margin-top: 20px;
 }
@@ -97,48 +146,73 @@ header {
     margin-bottom: 10px;
 }
 
-/* Video grid for ShoeCollection page */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-.video-grid video {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-.video-grid video:hover {
-    transform: scale(1.05);
-}
-.video-item video {
-    max-width: 800px;
+/* Carousel styling updated for peek and fade effect */
+.carousel {
+    position: relative;
+    margin: 40px auto;  /* centers the carousel */
+    max-width: 600px;
+    overflow: hidden;
 }
 
-/* Audio toggle button */
-.audio-toggle {
-    background: transparent;
-    border: none;
+/* Each slide takes 90% of the carousel width with a 10% gap for the next slide */
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.slide {
+    min-width: 90%;
+    margin-right: 10%;
+    box-sizing: border-box;
+    opacity: 0.5; /* default faded */
+    position: relative;
+}
+.slide.active {
+    opacity: 1; /* fully opaque for active slide */
+}
+
+/* Update slide title styling to display below the video using a lighter font */
+.slide-title {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-family: "NeueHaasDisplayXXThin", sans-serif; /* use lighter font for medium look */
+    font-size: 24px;   /* increase font-size for emphasis */
     color: white;
-    font-size: 16px;
-    cursor: pointer;
+    position: static; /* remove absolute positioning */
+    text-transform: uppercase;  /* added for capital letters */
 }
 
-/* Discover button with hover effect */
-.discover-btn {
-    font-size: 20px;
-    padding: 8px 16px;
-    border: 2px solid #00FFFF;
+/* Add a fading overlay on the right edge */
+.carousel::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(to left, black, transparent);
+    pointer-events: none;
+}
+
+/* Adjust carousel navigation buttons to be positioned far off to the sides */
+.carousel button {
     background: none;
-    color: #00FFFF;
+    border: none;
+    color: white;      /* ensure arrows are white */
+    padding: 0;
+    font-size: 25px;   /* retains increased icon size */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-    border-radius: 8px;
-    text-decoration: none;
+    z-index: 10;
+    display: block;
 }
-.discover-btn:hover {
-    background: #00FFFF;
-    color: black;
+.carousel .prev {
+    left: 50px;  /* moved inside from the left edge */
 }
+.carousel .next {
+    right: 50px; /* moved inside from the right edge */
+}
+
+/* ...existing styles... */
