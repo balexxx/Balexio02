@@ -1,14 +1,14 @@
 /* Load local fonts from the fonts folder */
 @font-face {
     font-family: "NeueHaasDisplayBold";
-    src: url("fonts/NeueHaasDisplayBold.ttf") format("truetype");
+    src: url("Fonts/NeueHaasDisplayBold.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "NeueHaasDisplayXXThin";
-    src: url("fonts/NeueHaasDisplayXXThin.ttf") format("truetype");
+    src: url("Fonts/NeueHaasDisplayXXThin.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
