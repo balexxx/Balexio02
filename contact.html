@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | BALEX</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Content/B_RED.png">
+    <meta name="description" content="Contact BALEX for inquiries about design, collaboration, or projects.">
+</head>
+<body>
+    <header>
+        <img id="logo" src="Content/logo123.png" alt="BALEX Logo" style="height: 150px; width: auto;">
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="ShoeCollection.html">Virtual Shoes</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="fade-in">Get in Touch</h2>
+                <p class="fade-in" style="max-width: 800px; margin: 0 auto 2rem; text-align: center;">
+                    Whether you're interested in collaboration, commissioning work, or discussing the future of digital design and fashion,
+                    I'd love to hear from you. Use any of the channels below to connect.
+                </p>
+
+                <div class="contact-grid">
+                    <!-- Contact Information Column -->
+                    <div class="contact-info slide-in-left">
+                        <h3><ion-icon name="person-outline" class="section-icon"></ion-icon> Connect</h3>
+                        
+                        <div class="contact-method">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <a href="mailto:balex.digital@gmail.com">balex.digital@gmail.com</a>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <ion-icon name="call-outline"></ion-icon>
+                            <a href="tel:+4797308204">+47 973 08 204</a>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <ion-icon name="logo-instagram"></ion-icon>
+                            <a href="https://www.instagram.com/balex.io/?hl=en" target="_blank">@balex.io</a>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <ion-icon name="logo-linkedin"></ion-icon>
+                            <a href="https://www.linkedin.com/in/birk-alexandersson-a4068418a/" target="_blank">Birk Alexandersson</a>
+                        </div>
+
+                        <div class="contact-method">
+                            <ion-icon name="logo-soundcloud"></ion-icon>
+                            <a href="https://soundcloud.com/balexxxx" target="_blank">soundcloud/balexxxx</a>
+                        </div>
+
+                        <h3 style="margin-top: 2.5rem;"><ion-icon name="navigate-outline" class="section-icon"></ion-icon> Location</h3>
+                        <p>Based in Oslo, Norway</p>
+                        <p>Available for remote collaboration worldwide</p>
+                    </div>
+                    
+                    <!-- Contact Form/Additional Info Column -->
+                    <div class="contact-info slide-in-right">
+                        <h3><ion-icon name="chatbox-outline" class="section-icon"></ion-icon> Send a Message</h3>
+                        
+                        <form class="contact-form" action="#" method="POST" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <ion-icon name="send-outline"></ion-icon> Send Message
+                            </button>
+                            
+                            <div id="formResponse" class="form-response"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="collaboration-section fade-in">
+                    <h3><ion-icon name="people-outline" class="section-icon"></ion-icon> Open to Collaborations</h3>
+                    <ul class="collaboration-list">
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Brand partnerships</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Digital fashion projects</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> NFT collections & tokenization</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Design consulting</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Metaverse experiences</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Creative technology innovation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 BALEX - All rights reserved.</p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/balex.io/?hl=en" target="_blank" class="social-icon">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="https://www.linkedin.com/in/birk-alexandersson-a4068418a/" target="_blank" class="social-icon">
+                <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+            <a href="https://soundcloud.com/balexxxx" target="_blank" class="social-icon">
+                <ion-icon name="logo-soundcloud"></ion-icon>
+            </a>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 300);
+
+            // Back to top button functionality from main.js
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+
+            // Form submission handling
+            const contactForm = document.getElementById('contactForm');
+            const formResponse = document.getElementById('formResponse');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // In a real implementation, you would send data to a server here
+                    // For now, just show a success message
+                    formResponse.innerHTML = 'Thank you for your message! I will get back to you soon.';
+                    formResponse.classList.add('success');
+                    contactForm.reset();
+                    
+                    // Hide the message after some time
+                    setTimeout(() => {
+                        formResponse.innerHTML = '';
+                        formResponse.classList.remove('success');
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

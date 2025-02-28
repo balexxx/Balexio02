@@ -3,19 +3,450 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visuals</title>
+  <title>BALEX - Visual Works</title>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="Content/B_RED.png">
+  <meta name="description" content="BALEX - Digital and visual art pieces, 3D renders and animations.">
 </head>
 <body>
-  <header style="text-align: center; background-color: black; padding: 20px;">
-    <img src="Content/logo123.png" alt="Logo123" style="height: 150px;">
-    <div style="margin-top: 20px;">
-      <a href="index.html" class="discover-btn">Home</a>
-    </div>
+  <header>
+    <img id="logo" src="Content/logo123.png" alt="BALEX Logo" style="height: 150px; width: auto;">
   </header>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">About</a></li>
+      <li><a href="ShoeCollection.html">Virtual Shoes</a></li>
+      <li><a href="visuals.html" class="active">Visuals</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <h1 style="color: white; text-align: center;">Hello, world!</h1>
+    <!-- Hero section with featured visual work -->
+    <section class="collection-hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-info">
+            <h1>Visual Works</h1>
+            <p class="hero-description">
+              Experimental digital creations exploring the boundaries between technology, design, and art.
+            </p>
+            <div class="hero-actions">
+              <button class="cta-button scroll-to-gallery">
+                <ion-icon name="grid-outline"></ion-icon> Explore Gallery
+              </button>
+            </div>
+          </div>
+          <div class="hero-media">
+            <!-- Featured video showcase -->
+            <div class="featured-video">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb1.mp4" type="video/mp4">
+              </video>
+              <div class="featured-badge">Featured Work</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Collection overview section -->
+    <section class="collection-section" id="gallery">
+      <div class="container">
+        <div class="collection-header">
+          <h2>Visual Collection</h2>
+          <p class="collection-subtitle">Exploring digital aesthetics through 3D animation and experimental design</p>
+        </div>
+        
+        <div class="portfolio-filter">
+          <button class="filter-btn active" data-filter="all">All Works</button>
+          <button class="filter-btn" data-filter="video">3D Animations</button>
+          <button class="filter-btn" data-filter="image">Still Renders</button>
+          <button class="filter-btn" data-filter="experimental">Experimental</button>
+        </div>
+        
+        <div class="collection-grid">
+          <!-- 3D Animation Items -->
+          <div class="collection-item portfolio-item video-item" data-category="video">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb1.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Orb Genesis</h3>
+                  <p>Experimental fluid dynamics simulation</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb1.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Orb Genesis</h4>
+              <span>3D Animation • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item video-item" data-category="video">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb2.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Orbital Flow</h3>
+                  <p>Particle system with procedural texturing</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb2.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Orbital Flow</h4>
+              <span>3D Animation • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item video-item" data-category="video">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb3.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Liquid Metal</h3>
+                  <p>Exploring metallic surfaces with light refraction</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb3.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Liquid Metal</h4>
+              <span>3D Animation • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item video-item" data-category="experimental">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb4.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Quantum Sphere</h3>
+                  <p>Abstract representation of quantum fields</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb4.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Quantum Sphere</h4>
+              <span>Experimental • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item video-item" data-category="video">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb5.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Prismatic Waves</h3>
+                  <p>Light refraction study with animated displacement</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb5.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Prismatic Waves</h4>
+              <span>3D Animation • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item video-item" data-category="experimental">
+            <div class="portfolio-content">
+              <video autoplay muted loop playsinline>
+                <source src="Content/Orbs/orb6.mp4" type="video/mp4">
+              </video>
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Neural Network</h3>
+                  <p>Visual abstraction of artificial intelligence systems</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Orbs/orb6.mp4" data-type="video">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Neural Network</h4>
+              <span>Experimental • 2023</span>
+            </div>
+          </div>
+          
+          <!-- Image Items (Placeholders - replace with actual images) -->
+          <div class="collection-item portfolio-item image-item" data-category="image">
+            <div class="portfolio-content">
+              <img src="Content/Images/placeholder1.jpg" alt="Geometric Study">
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Geometric Study</h3>
+                  <p>Exploration of algorithmic form generation</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Images/placeholder1.jpg" data-type="image">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Geometric Study</h4>
+              <span>Still Render • 2023</span>
+            </div>
+          </div>
+          
+          <div class="collection-item portfolio-item image-item" data-category="image">
+            <div class="portfolio-content">
+              <img src="Content/Images/placeholder2.jpg" alt="Futuristic Architecture">
+              <div class="item-overlay">
+                <div class="item-details">
+                  <h3>Futuristic Architecture</h3>
+                  <p>Conceptual architectural visualization</p>
+                </div>
+                <div class="item-actions">
+                  <button class="action-btn view-btn" data-src="Content/Images/placeholder2.jpg" data-type="image">
+                    <ion-icon name="expand-outline"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="item-caption">
+              <h4>Futuristic Architecture</h4>
+              <span>Still Render • 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Design process section -->
+    <section class="process-section">
+      <div class="container">
+        <h2>Design Process</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number">01</div>
+            <h3>Concept</h3>
+            <p>Initial visualization and research to define the creative direction and aesthetic goals.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">02</div>
+            <h3>Modeling</h3>
+            <p>Creating 3D structures and procedural systems using advanced computational techniques.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">03</div>
+            <h3>Simulation</h3>
+            <p>Applying physics, fluid dynamics, and particle systems to generate organic movement.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">04</div>
+            <h3>Refinement</h3>
+            <p>Fine-tuning materials, lighting, and rendering parameters for the final visual outcome.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Portfolio Modal -->
+  <div class="portfolio-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-content">
+        <!-- Content will be loaded here -->
+      </div>
+      <div class="modal-info">
+        <h3 class="modal-title">Project Title</h3>
+        <p class="modal-description">Project description text</p>
+        <div class="modal-meta">
+          <span class="modal-date">2023</span>
+          <span class="modal-category">3D Animation</span>
+        </div>
+      </div>
+      <button class="modal-close">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 BALEX - All rights reserved.</p>
+  </footer>
+
+  <a href="#" class="back-to-top" id="backToTop">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Back to top functionality
+      const backToTopButton = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+      
+      // Add parallax effect to header logo
+      window.addEventListener('scroll', () => {
+        const scrollValue = window.scrollY;
+        if (scrollValue < 500) {
+          document.querySelector('#logo').style.transform = `translateY(${scrollValue * 0.1}px)`;
+        }
+      });
+      
+      // Portfolio filtering functionality
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active filter button
+          filterBtns.forEach(btn => btn.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Filter items
+          const filterValue = btn.getAttribute('data-filter');
+          
+          portfolioItems.forEach(item => {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 50);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.8)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+      
+      // Modal functionality
+      const modal = document.querySelector('.portfolio-modal');
+      const modalContent = modal.querySelector('.modal-content');
+      const modalTitle = modal.querySelector('.modal-title');
+      const modalDescription = modal.querySelector('.modal-description');
+      const modalDate = modal.querySelector('.modal-date');
+      const modalCategory = modal.querySelector('.modal-category');
+      const modalClose = modal.querySelector('.modal-close');
+      const modalOverlay = modal.querySelector('.modal-overlay');
+      const viewBtns = document.querySelectorAll('.view-btn');
+      
+      viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const src = btn.getAttribute('data-src');
+          const type = btn.getAttribute('data-type');
+          const portfolioItem = btn.closest('.portfolio-item');
+          const title = portfolioItem.querySelector('h4').textContent;
+          const captionInfo = portfolioItem.querySelector('.item-caption span').textContent;
+          const description = portfolioItem.querySelector('.item-details p').textContent;
+          
+          // Set modal content
+          if (type === 'video') {
+            modalContent.innerHTML = `
+              <video autoplay muted loop controls>
+                <source src="${src}" type="video/mp4">
+              </video>
+            `;
+          } else {
+            modalContent.innerHTML = `
+              <img src="${src}" alt="${title}">
+            `;
+          }
+          
+          // Set modal info
+          modalTitle.textContent = title;
+          modalDescription.textContent = description;
+          
+          // Extract date and category from caption info
+          const captionParts = captionInfo.split('•');
+          if (captionParts.length === 2) {
+            modalCategory.textContent = captionParts[0].trim();
+            modalDate.textContent = captionParts[1].trim();
+          }
+          
+          // Show modal
+          document.body.classList.add('modal-open');
+          modal.classList.add('visible');
+        });
+      });
+      
+      // Close modal
+      modalClose.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', closeModal);
+      
+      function closeModal() {
+        modal.classList.remove('visible');
+        setTimeout(() => {
+          document.body.classList.remove('modal-open');
+        }, 300);
+      }
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+      
+      // Scroll to gallery when clicking the explore button
+      document.querySelector('.scroll-to-gallery').addEventListener('click', () => {
+        document.getElementById('gallery').scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+      });
+    });
+  </script>
 </body>
 </html>

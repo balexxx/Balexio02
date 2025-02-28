@@ -1,0 +1,1 @@
+// Delete this entire file if it's only used for the Visuals page
