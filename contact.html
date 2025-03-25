@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="Content/B_RED.png">
     <meta name="description" content="Contact BALEX for inquiries about design, collaboration, or projects.">
+    <style>
+        body, header, nav, main, section, footer, .container {
+            background-color: #000000 !important; /* Force pure black background */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,6 +26,7 @@
             <li><a href="ShoeCollection.html">Virtual Shoes</a></li>
             <li><a href="music.html">Music</a></li>
             <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="DEV.html">DEV</a></li>
         </ul>
     </nav>
 
@@ -184,6 +190,9 @@
                     }, 5000);
                 });
             }
+
+            // Remove any logo animation
+            document.querySelector('#logo').style.transform = 'none';
         });
     </script>
 </body>

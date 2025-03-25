@@ -2,7 +2,7 @@
 :root {
   --primary-color: #ff3333;
   --text-color: #ffffff;
-  --bg-color: #000000;
+  --bg-color: #000000; /* Ensure black background */
   --accent-color: #333333;
   --hover-color: #ff6666;
   --transition-speed: 0.3s;
@@ -104,7 +104,7 @@ a:hover {
 /* Global Styles */
 body {
     font-family: "NeueHaasDisplayRoman", sans-serif;
-    background-color: var(--bg-color);
+    background-color: #000000; /* Force pure black */
     color: var(--text-color);
     max-width: var(--container-width);
     margin: 0 auto;
@@ -115,6 +115,10 @@ body {
     border: none; /* Ensure no border on body */
 }
 
+body, header, nav, main, section, footer, .card, .container {
+    background-color: #000000; /* Ensure all major containers have pure black backgrounds */
+}
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -122,15 +126,13 @@ body {
     padding: 0 20px;
 }
 
-/* Enhanced Logo and header with glass morphism */
+/* Enhanced Logo and header - REMOVE ANIMATION */
 header {
     text-align: center;
     padding: 2.5rem 0 1.5rem;
     position: relative;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: #000000; /* Force pure black */
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -141,15 +143,14 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(255, 0, 0, 0.05), rgba(0, 0, 255, 0.05));
+    background-color: #000000; /* Force pure black */
     z-index: -1;
 }
 
 #logo {
     width: 180px;
     height: auto;
-    opacity: 0;
-    animation: logo-reveal 2s forwards;
+    opacity: 1; /* No fade-in, just show logo */
     filter: drop-shadow(0 0 15px rgba(255, 51, 51, 0.3));
     transition: transform 0.5s ease;
 }
@@ -158,11 +159,12 @@ header::before {
     transform: scale(1.05) rotate(2deg);
 }
 
-@keyframes logo-reveal {
+/* Remove logo animation keyframes */
+/* @keyframes logo-reveal {
     0% { opacity: 0; transform: translateY(-20px); }
     50% { opacity: 0.5; }
     100% { opacity: 1; transform: translateY(0); }
-}
+} */
 
 /* Enhanced Navigation bar with indicators */
 .navbar {
@@ -173,7 +175,7 @@ header::before {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: #000000; /* Force pure black */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
@@ -240,6 +242,7 @@ header::before {
 .about-section {
     padding: 5rem 0;
     position: relative;
+    background-color: #000000; /* Force pure black */
 }
 
 .about-section::before {
@@ -1635,4 +1638,8 @@ social-icon:hover ion-icon {
     margin-bottom: 0.3rem; /* Reduced from 0.5rem */
     font-family: "NeueHaasDisplayRoman", sans-serif;
     opacity: 0.8;
+}
+
+.financial-model {
+    background-color: #000000; /* Black background for content sections */
 }

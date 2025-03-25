@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="Content/B_RED.png">
   <meta name="description" content="BALEX - Digital and visual art pieces, 3D renders and animations.">
+  <style>
+    body, header, nav, main, section, footer, .container {
+      background-color: #000000 !important; /* Force pure black background */
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -22,6 +27,7 @@
       <li><a href="visuals.html" class="active">Visuals</a></li>
       <li><a href="music.html">Music</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li><a href="DEV.html">DEV</a></li>
     </ul>
   </nav>
 
@@ -333,8 +339,9 @@
         window.scrollTo({top: 0, behavior: 'smooth'});
       });
       
-      // Add parallax effect to header logo
-      window.addEventListener('scroll', () => {
+      // Remove parallax effect to header logo
+      document.querySelector('#logo').style.transform = 'none';
+      window.removeEventListener('scroll', function() {
         const scrollValue = window.scrollY;
         if (scrollValue < 500) {
           document.querySelector('#logo').style.transform = `translateY(${scrollValue * 0.1}px)`;

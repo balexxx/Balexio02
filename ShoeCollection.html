@@ -31,6 +31,9 @@
                 max-width: 800px;
             }
         }
+        body, header, nav, main, section, footer, .container {
+            background-color: #000000 !important; /* Force pure black background */
+        }
     </style>
 </head>
 <body>
@@ -44,6 +47,7 @@
             <li><a href="ShoeCollection.html" class="active">Virtual Shoes</a></li>
             <li><a href="music.html">Music</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="DEV.html">DEV</a></li>
         </ul>
     </nav>
 
@@ -409,16 +413,7 @@
                         </div>
                       </div>
                       
-                      <!-- Adding V-ARCANE BLACK.mp4 -->
-                      <div class="video-item" style="text-align: center;">
-                        <video autoplay muted loop playsinline style="width: 100%; max-width: 660px;">
-                          <source src="Content/MP4/V-ARCANE BLACK.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-control" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px;">
-                          <button class="audio-toggle" style="background: transparent; border: none; color: white; font-size: 16px; cursor: pointer;">▶</button>
-                          <p class="video-title" style="margin: 0; color: white;">V-ARCANE BLACK</p>
-                        </div>
-                      </div>
+
                 </div> <!-- end of video-grid -->
                 
                 <!-- Collaboration Partners Section -->
@@ -666,6 +661,9 @@
             videos.forEach(video => {
                 updateSoundIndicator(video);
             });
+
+            // Remove any logo animation
+            document.querySelector('#logo').style.transform = 'none';
         });
     </script>
 </body>

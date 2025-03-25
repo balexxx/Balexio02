@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BALEX - Financial Model</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Content/B_RED.png">
+    <style>
+        /* Password protection styles */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .password-container {
+            background-color: var(--bg-panel);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .password-container h2 {
+            margin-top: 0;
+            color: var(--text-primary);
+            border-bottom: none;
+        }
+        
+        .password-container p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .password-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 4px;
+        }
+        
+        .password-container button {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .password-container button:hover {
+            background-color: #3d6aef;
+        }
+        
+        .password-container .error-message {
+            color: var(--accent-red);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        /* Hide main content initially */
+        #main-content {
+            display: none;
+        }
+        
+        /* Financial model specific styles */
+        :root {
+            --bg-dark: #000000; /* Changed to pure black */
+            --bg-panel: #000000; /* Changed to pure black */
+            --bg-card: #121212; /* Darker shade for cards */
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #4d7aff;
+            --accent-green: #4caf50;
+            --accent-red: #f44336;
+            --accent-purple: #9c27b0;
+            --border-color: #444444;
+        }
+        
+        body {
+            background-color: #000000; /* Set to pure black */
+            color: var(--text-primary);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .financial-model {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .model-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .model-btn {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .model-btn:hover {
+            background-color: #3d6aef;
+        }
+        
+        .model-btn.danger {
+            background-color: var(--accent-red);
+        }
+        
+        .model-btn.danger:hover {
+            background-color: #d32f2f;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .grid-4 {
+                grid-template-columns: 2fr 3fr;
+            }
+        }
+        
+        .card {
+            background-color: var(--bg-panel);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-item {
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            padding: 1rem;
+        }
+        
+        .summary-item p:first-child {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .summary-item p:last-child {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .model-input {
+            width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            color: var(--text-primary);
+            border-radius: 4px;
+        }
+        
+        .model-label {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        
+        td {
+            color: var(--text-primary);
+        }
+        
+        tr.section-header td {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        
+        tr.total-costs td {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+        
+        tr.total-revenue td {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .form-row {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .note {
+            background-color: var(--bg-card);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+        }
+        
+        .note h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .note p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        /* Make section titles match site style */
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay">
+        <div class="password-container">
+            <h2>Protected Content</h2>
+            <p>This page contains confidential financial information. Please enter the password to continue.</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <button id="submit-password">Access Financial Model</button>
+            <p class="error-message" id="password-error">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <header>
+        <img id="logo" src="Content/logo123.png" alt="BALEX Logo" style="height: 150px; width: auto;">
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="ShoeCollection.html">Virtual Shoes</a></li>
+            <li><a href="music.html">Music</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="DEV.html" class="active">DEV</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <section class="financial-model">
+            <div class="model-header">
+                <h1>CALYPTO FIRST DROP</h1>
+                <p class="subtitle">Financial Model</p>
+                <p class="subtitle">All values in Norwegian Kroner (kr)</p>
+            </div>
+            
+            <div class="actions">
+                <button id="exportBtn" class="model-btn">Export to Excel</button>
+                <button class="model-btn danger" id="resetBtn">Reset Values</button>
+            </div>
+            
+            <!-- Summary Dashboard -->
+            <div class="card">
+                <h2>Financial Summary</h2>
+                <div class="grid grid-3">
+                    <div class="summary-item">
+                        <p>Total Products</p>
+                        <p id="totalProducts">600</p>
+                    </div>
+                    <div class="summary-item">
+                        <p>Investment</p>
+                        <p id="totalInvestment">kr 135 000</p>
+                    </div>
+                    <div class="summary-item">
+                        <p>Revenue</p>
+                        <p id="totalRevenue">kr 694 900</p>
+                    </div>
+                    <div class="summary-item">
+                        <p>Profit</p>
+                        <p id="totalProfit">kr 559 900</p>
+                    </div>
+                    <div class="summary-item">
+                        <p>Margin</p>
+                        <p id="profitMargin">80.6%</p>
+                    </div>
+                    <div class="summary-item">
+                        <p>ROI</p>
+                        <p id="roi">414.7%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-4" style="margin-top: 1.5rem;">
+                <!-- Input Section -->
+                <div>
+                    <!-- Product Quantities -->
+                    <div class="card">
+                        <h2>Product Quantities</h2>
+                        
+                        <h3>Hoodies</h3>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieCoralTrue">Coral - True Style</label>
+                                <input class="model-input" type="number" id="hoodieCoralTrue" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieCoralCyber">Coral - Cyber Style</label>
+                                <input class="model-input" type="number" id="hoodieCoralCyber" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieRedTrue">Red - True Style</label>
+                                <input class="model-input" type="number" id="hoodieRedTrue" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieRedCyber">Red - Cyber Style</label>
+                                <input class="model-input" type="number" id="hoodieRedCyber" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieBlackTrue">Black - True Style</label>
+                                <input class="model-input" type="number" id="hoodieBlackTrue" value="33">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieBlackCyber">Black - Cyber Style</label>
+                                <input class="model-input" type="number" id="hoodieBlackCyber" value="33">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodieBlackNewHistory">Black - New History</label>
+                                <input class="model-input" type="number" id="hoodieBlackNewHistory" value="34">
+                            </div>
+                        </div>
+                        
+                        <h3>T-Shirts</h3>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="model-label" for="tshirtRegular">Regular T-shirts</label>
+                                <input class="model-input" type="number" id="tshirtRegular" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="tshirtLayered">Layered T-shirts</label>
+                                <input class="model-input" type="number" id="tshirtLayered" value="100">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cost & Pricing -->
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h2>Cost & Pricing</h2>
+                        
+                        <h3>Manufacturing Costs (kr)</h3>
+                        <div class="form-group">
+                            <div class="form-row grid grid-3">
+                                <div>
+                                    <p>Product</p>
+                                </div>
+                                <div>
+                                    <p>Min Cost</p>
+                                </div>
+                                <div>
+                                    <p>Max Cost</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row grid grid-3">
+                                <div>
+                                    <p>Hoodies</p>
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="hoodieCostMin" value="350">
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="hoodieCostMax" value="450">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row grid grid-3">
+                                <div>
+                                    <p>Regular T-shirts</p>
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="regularTshirtCostMin" value="120">
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="regularTshirtCostMax" value="180">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row grid grid-3">
+                                <div>
+                                    <p>Layered T-shirts</p>
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="layeredTshirtCostMin" value="220">
+                                </div>
+                                <div>
+                                    <input class="model-input" type="number" id="layeredTshirtCostMax" value="300">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Retail Prices (kr)</h3>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="model-label" for="hoodiePriceTrue">True Style Hoodie</label>
+                                <input class="model-input" type="number" id="hoodiePriceTrue" value="1499">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="hoodiePriceCyber">Cyber Style Hoodie</label>
+                                <input class="model-input" type="number" id="hoodiePriceCyber" value="1699">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="regularTshirtPrice">Regular T-shirts</label>
+                                <input class="model-input" type="number" id="regularTshirtPrice" value="799">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="layeredTshirtPrice">Layered T-shirts</label>
+                                <input class="model-input" type="number" id="layeredTshirtPrice" value="1299">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Expenses -->
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h2>Other Expenses (kr)</h2>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label class="model-label" for="shippingCost">Shipping</label>
+                                <input class="model-input" type="number" id="shippingCost" value="25000">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="marketingCost">Marketing</label>
+                                <input class="model-input" type="number" id="marketingCost" value="30000">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="packagingCost">Packaging</label>
+                                <input class="model-input" type="number" id="packagingCost" value="12000">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="samplesCost">Samples</label>
+                                <input class="model-input" type="number" id="samplesCost" value="15000">
+                            </div>
+                            <div class="form-group">
+                                <label class="model-label" for="miscCost">Miscellaneous</label>
+                                <input class="model-input" type="number" id="miscCost" value="20000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Section -->
+                <div>
+                    <!-- Financial Breakdown -->
+                    <div class="card">
+                        <h2>Financial Breakdown</h2>
+                        
+                        <div class="grid grid-3" style="margin-bottom: 1.5rem;">
+                            <div class="summary-item">
+                                <p>Total Hoodies</p>
+                                <p id="totalHoodies">300</p>
+                            </div>
+                            <div class="summary-item">
+                                <p>Total Regular T-shirts</p>
+                                <p id="totalRegularTshirts">200</p>
+                            </div>
+                            <div class="summary-item">
+                                <p>Total Layered T-shirts</p>
+                                <p id="totalLayeredTshirts">100</p>
+                            </div>
+                        </div>
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th style="text-align: right;">Min (kr)</th>
+                                    <th style="text-align: right;">Max (kr)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="section-header">
+                                    <td colspan="3">Manufacturing Costs</td>
+                                </tr>
+                                <tr>
+                                    <td>Hoodies</td>
+                                    <td id="hoodieCostTotalMin" style="text-align: right;">kr 105 000</td>
+                                    <td id="hoodieCostTotalMax" style="text-align: right;">kr 135 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Regular T-shirts</td>
+                                    <td id="regularTshirtCostTotalMin" style="text-align: right;">kr 24 000</td>
+                                    <td id="regularTshirtCostTotalMax" style="text-align: right;">kr 36 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Layered T-shirts</td>
+                                    <td id="layeredTshirtCostTotalMin" style="text-align: right;">kr 22 000</td>
+                                    <td id="layeredTshirtCostTotalMax" style="text-align: right;">kr 30 000</td>
+                                </tr>
+                                <tr>
+                                    <td>Other Costs</td>
+                                    <td id="otherCostsTotal" style="text-align: right;">kr 102 000</td>
+                                    <td style="text-align: right;">kr 102 000</td>
+                                </tr>
+                                <tr class="total-costs">
+                                    <td>Total Costs</td>
+                                    <td id="totalCostMin" style="text-align: right;">kr 253 000</td>
+                                    <td id="totalCostMax" style="text-align: right;">kr 303 000</td>
+                                </tr>
+                                
+                                <tr class="section-header">
+                                    <td colspan="3">Revenue</td>
+                                </tr>
+                                <tr>
+                                    <td>True Style Hoodies</td>
+                                    <td id="hoodieRevenueTrueStyle" colspan="2" style="text-align: right;">kr 199 867</td>
+                                </tr>
+                                <tr>
+                                    <td>Cyber Style Hoodies</td>
+                                    <td id="hoodieRevenueCyberStyle" colspan="2" style="text-align: right;">kr 283 833</td>
+                                </tr>
+                                <tr>
+                                    <td>Regular T-shirts</td>
+                                    <td id="regularTshirtRevenue" colspan="2" style="text-align: right;">kr 159 800</td>
+                                </tr>
+                                <tr>
+                                    <td>Layered T-shirts</td>
+                                    <td id="layeredTshirtRevenue" colspan="2" style="text-align: right;">kr 129 900</td>
+                                </tr>
+                                <tr class="total-revenue">
+                                    <td>Total Revenue</td>
+                                    <td id="breakdownTotalRevenue" colspan="2" style="text-align: right;">kr 773 400</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Profitability Analysis -->
+                    <div class="grid grid-2" style="margin-top: 1.5rem;">
+                        <div class="card">
+                            <h2>Profit Analysis</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Min Profit</td>
+                                        <td id="profitMin" style="text-align: right;">kr 470 400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max Profit</td>
+                                        <td id="profitMax" style="text-align: right;">kr 520 400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Min Margin</td>
+                                        <td id="marginMin" style="text-align: right;">60.8%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max Margin</td>
+                                        <td id="marginMax" style="text-align: right;">67.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Min ROI</td>
+                                        <td id="roiMin" style="text-align: right;">155.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max ROI</td>
+                                        <td id="roiMax" style="text-align: right;">205.7%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="card">
+                            <h2>Breakeven Analysis</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Average Price</td>
+                                        <td id="avgPrice" style="text-align: right;">kr 1 289</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Average Cost</td>
+                                        <td id="avgCost" style="text-align: right;">kr 336</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contribution Margin/Unit</td>
+                                        <td id="contributionMargin" style="text-align: right;">kr 953</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Breakeven Units</td>
+                                        <td id="breakEvenUnits" style="text-align: right;">107</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Breakeven % of Production</td>
+                                        <td id="breakEvenPercentage" style="text-align: right;">17.8%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Sensitivity and Future Funding -->
+                    <div class="grid grid-2" style="margin-top: 1.5rem;">
+                        <div class="card">
+                            <h2>Sell-through Scenarios</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sell-through</th>
+                                        <th style="text-align: right;">Revenue</th>
+                                        <th style="text-align: right;">Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>25%</td>
+                                        <td id="revenue25" style="text-align: right;">kr 193 350</td>
+                                        <td id="profit25" style="text-align: right;">kr -109 650</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50%</td>
+                                        <td id="revenue50" style="text-align: right;">kr 386 700</td>
+                                        <td id="profit50" style="text-align: right;">kr 83 700</td>
+                                    </tr>
+                                    <tr>
+                                        <td>75%</td>
+                                        <td id="revenue75" style="text-align: right;">kr 580 050</td>
+                                        <td id="profit75" style="text-align: right;">kr 277 050</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100%</td>
+                                        <td id="revenue100" style="text-align: right;">kr 773 400</td>
+                                        <td id="profit100" style="text-align: right;">kr 470 400</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="card">
+                            <h2>Future Collections</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Collection</th>
+                                        <th style="text-align: right;">Est. Investment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Threshold Bag Collection</td>
+                                        <td id="thresholdBagCost" style="text-align: right;">kr 242 400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Next Generation Uniform</td>
+                                        <td id="nextGenUniformCost" style="text-align: right;">kr 363 600</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="note">
+                                <h4>Investment Strategy</h4>
+                                <p>
+                                    The profit from First Drop can be reinvested to fund the Threshold Bag Collection.
+                                    With successful sell-through, there will be sufficient capital to begin development.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p>All data is saved automatically in your browser. You can return to this page anytime to continue working.</p>
+                <p style="margin-top: 0.5rem;">Click "Export to Excel" to download the complete financial model as an Excel file.</p>
+                <p style="margin-top: 1rem; color: #666;">© 2025 Calypto</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 BALEX - All rights reserved.</p>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+    <script>
+        // Password protection
+        document.addEventListener('DOMContentLoaded', function() {
+            const correctPassword = "First Drop";
+            const passwordOverlay = document.getElementById('password-overlay');
+            const mainContent = document.getElementById('main-content');
+            const passwordInput = document.getElementById('password-input');
+            const submitButton = document.getElementById('submit-password');
+            const errorMessage = document.getElementById('password-error');
+            
+            // Check if user has already entered password in this session
+            if (sessionStorage.getItem('devAccessGranted') === 'true') {
+                passwordOverlay.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+            
+            // Handle password submission
+            function checkPassword() {
+                if (passwordInput.value === correctPassword) {
+                    passwordOverlay.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    sessionStorage.setItem('devAccessGranted', 'true');
+                } else {
+                    errorMessage.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+            
+            submitButton.addEventListener('click', checkPassword);
+            
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Focus the password input when page loads
+            passwordInput.focus();
+        });
+        
+        // Store for all input values
+        let data = {
+            // Hoodie quantities
+            hoodieCoralTrue: 50,
+            hoodieCoralCyber: 50,
+            hoodieRedTrue: 50,
+            hoodieRedCyber: 50,
+            hoodieBlackTrue: 33,
+            hoodieBlackCyber: 33,
+            hoodieBlackNewHistory: 34,
+            
+            // T-shirt quantities
+            tshirtRegular: 200,
+            tshirtLayered: 100,
+            
+            // Manufacturing costs (NOK)
+            hoodieCostMin: 350,
+            hoodieCostMax: 450,
+            regularTshirtCostMin: 120,
+            regularTshirtCostMax: 180,
+            layeredTshirtCostMin: 220,
+            layeredTshirtCostMax: 300,
+            
+            // Retail prices (NOK)
+            hoodiePriceTrue: 1499,
+            hoodiePriceCyber: 1699,
+            regularTshirtPrice: 799,
+            layeredTshirtPrice: 1299,
+            
+            // Other costs (NOK)
+            shippingCost: 25000,
+            marketingCost: 30000,
+            packagingCost: 12000,
+            samplesCost: 15000,
+            miscCost: 20000
+        };
+        
+        // Load saved data from localStorage if available
+        function loadSavedData() {
+            const savedData = localStorage.getItem('calyptoData');
+            if (savedData) {
+                data = JSON.parse(savedData);
+                
+                // Update all input fields
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.value = data[key];
+                    }
+                });
+            }
+            
+            // Calculate and update results
+            calculateAll();
+        }
+        
+        // Format currency
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('nb-NO', {
+                style: 'currency',
+                currency: 'NOK',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+        
+        // Calculate all derived values
+        function calculateAll() {
+            // Get values from all inputs
+            updateDataFromInputs();
+            
+            // Calculate quantities
+            const totalHoodies = data.hoodieCoralTrue + data.hoodieCoralCyber + 
+                               data.hoodieRedTrue + data.hoodieRedCyber + 
+                               data.hoodieBlackTrue + data.hoodieBlackCyber + 
+                               data.hoodieBlackNewHistory;
+            
+            const totalTrueHoodies = data.hoodieCoralTrue + data.hoodieRedTrue + data.hoodieBlackTrue;
+            const totalCyberHoodies = data.hoodieCoralCyber + data.hoodieRedCyber + 
+                                   data.hoodieBlackCyber + data.hoodieBlackNewHistory;
+            
+            const totalRegularTshirts = data.tshirtRegular;
+            const totalLayeredTshirts = data.tshirtLayered;
+            const totalProducts = totalHoodies + totalRegularTshirts + totalLayeredTshirts;
+            
+            // Manufacturing costs
+            const hoodieCostTotalMin = totalHoodies * data.hoodieCostMin;
+            const hoodieCostTotalMax = totalHoodies * data.hoodieCostMax;
+            const regularTshirtCostTotalMin = totalRegularTshirts * data.regularTshirtCostMin;
+            const regularTshirtCostTotalMax = totalRegularTshirts * data.regularTshirtCostMax;
+            const layeredTshirtCostTotalMin = totalLayeredTshirts * data.layeredTshirtCostMin;
+            const layeredTshirtCostTotalMax = totalLayeredTshirts * data.layeredTshirtCostMax;
+            
+            const otherCostsTotal = data.shippingCost + data.marketingCost + 
+                                  data.packagingCost + data.samplesCost + data.miscCost;
+            
+            const totalCostMin = hoodieCostTotalMin + regularTshirtCostTotalMin + 
+                               layeredTshirtCostTotalMin + otherCostsTotal;
+            
+            const totalCostMax = hoodieCostTotalMax + regularTshirtCostTotalMax + 
+                               layeredTshirtCostTotalMax + otherCostsTotal;
+            
+            // Revenue calculations
+            const hoodieRevenueTrueStyle = totalTrueHoodies * data.hoodiePriceTrue;
+            const hoodieRevenueCyberStyle = totalCyberHoodies * data.hoodiePriceCyber;
+            const regularTshirtRevenue = totalRegularTshirts * data.regularTshirtPrice;
+            const layeredTshirtRevenue = totalLayeredTshirts * data.layeredTshirtPrice;
+            
+            const totalRevenue = hoodieRevenueTrueStyle + hoodieRevenueCyberStyle + 
+                               regularTshirtRevenue + layeredTshirtRevenue;
+            
+            // Profit calculations
+            const profitMin = totalRevenue - totalCostMax; // Worst case
+            const profitMax = totalRevenue - totalCostMin; // Best case
+            
+            // Margin calculations
+            const marginMin = (profitMin / totalRevenue) * 100;
+            const marginMax = (profitMax / totalRevenue) * 100;
+            
+            // ROI calculations
+            const roiMin = (profitMin / totalCostMax) * 100;
+            const roiMax = (profitMax / totalCostMin) * 100;
+            
+            // Breakeven calculations
+            const avgPrice = (
+                (totalTrueHoodies * data.hoodiePriceTrue) +
+                (totalCyberHoodies * data.hoodiePriceCyber) +
+                (totalRegularTshirts * data.regularTshirtPrice) +
+                (totalLayeredTshirts * data.layeredTshirtPrice)
+            ) / totalProducts;
+            
+            const avgCost = (
+                (totalHoodies * ((data.hoodieCostMin + data.hoodieCostMax) / 2)) +
+                (totalRegularTshirts * ((data.regularTshirtCostMin + data.regularTshirtCostMax) / 2)) +
+                (totalLayeredTshirts * ((data.layeredTshirtCostMin + data.layeredTshirtCostMax) / 2))
+            ) / totalProducts;
+            
+            const contributionMargin = avgPrice - avgCost;
+            const breakEvenUnits = otherCostsTotal / contributionMargin;
+            const breakEvenPercentage = (breakEvenUnits / totalProducts) * 100;
+            
+            // Sensitivity analysis
+            const revenue25 = totalRevenue * 0.25;
+            const revenue50 = totalRevenue * 0.5;
+            const revenue75 = totalRevenue * 0.75;
+            const revenue100 = totalRevenue;
+            
+            const profit25 = revenue25 - totalCostMax;
+            const profit50 = revenue50 - totalCostMax;
+            const profit75 = revenue75 - totalCostMax;
+            const profit100 = revenue100 - totalCostMax;
+            
+            // Future collections
+            const thresholdBagCost = totalCostMax * 0.8;
+            const nextGenUniformCost = totalCostMax * 1.2;
+            
+            // Update the DOM with calculated values
+            
+            // Summary section
+            document.getElementById('totalProducts').textContent = totalProducts;
+            document.getElementById('totalInvestment').textContent = formatCurrency(totalCostMax);
+            document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
+            document.getElementById('totalProfit').textContent = formatCurrency(profitMax);
+            document.getElementById('profitMargin').textContent = marginMax.toFixed(1) + '%';
+            document.getElementById('roi').textContent = roiMax.toFixed(1) + '%';
+            
+            // Quantities
+            document.getElementById('totalHoodies').textContent = totalHoodies;
+            document.getElementById('totalRegularTshirts').textContent = totalRegularTshirts;
+            document.getElementById('totalLayeredTshirts').textContent = totalLayeredTshirts;
+            
+            // Manufacturing costs
+            document.getElementById('hoodieCostTotalMin').textContent = formatCurrency(hoodieCostTotalMin);
+            document.getElementById('hoodieCostTotalMax').textContent = formatCurrency(hoodieCostTotalMax);
+            document.getElementById('regularTshirtCostTotalMin').textContent = formatCurrency(regularTshirtCostTotalMin);
+            document.getElementById('regularTshirtCostTotalMax').textContent = formatCurrency(regularTshirtCostTotalMax);
+            document.getElementById('layeredTshirtCostTotalMin').textContent = formatCurrency(layeredTshirtCostTotalMin);
+            document.getElementById('layeredTshirtCostTotalMax').textContent = formatCurrency(layeredTshirtCostTotalMax);
+            document.getElementById('otherCostsTotal').textContent = formatCurrency(otherCostsTotal);
+            document.getElementById('totalCostMin').textContent = formatCurrency(totalCostMin);
+            document.getElementById('totalCostMax').textContent = formatCurrency(totalCostMax);
+            
+            // Revenue
+            document.getElementById('hoodieRevenueTrueStyle').textContent = formatCurrency(hoodieRevenueTrueStyle);
+            document.getElementById('hoodieRevenueCyberStyle').textContent = formatCurrency(hoodieRevenueCyberStyle);
+            document.getElementById('regularTshirtRevenue').textContent = formatCurrency(regularTshirtRevenue);
+            document.getElementById('layeredTshirtRevenue').textContent = formatCurrency(layeredTshirtRevenue);
+            document.getElementById('breakdownTotalRevenue').textContent = formatCurrency(totalRevenue);
+            
+            // Profit analysis
+            document.getElementById('profitMin').textContent = formatCurrency(profitMin);
+            document.getElementById('profitMax').textContent = formatCurrency(profitMax);
+            document.getElementById('marginMin').textContent = marginMin.toFixed(1) + '%';
+            document.getElementById('marginMax').textContent = marginMax.toFixed(1) + '%';
+            document.getElementById('roiMin').textContent = roiMin.toFixed(1) + '%';
+            document.getElementById('roiMax').textContent = roiMax.toFixed(1) + '%';
+            
+            // Breakeven
+            document.getElementById('avgPrice').textContent = formatCurrency(avgPrice);
+            document.getElementById('avgCost').textContent = formatCurrency(avgCost);
+            document.getElementById('contributionMargin').textContent = formatCurrency(contributionMargin);
+            document.getElementById('breakEvenUnits').textContent = Math.round(breakEvenUnits);
+            document.getElementById('breakEvenPercentage').textContent = breakEvenPercentage.toFixed(1) + '%';
+            
+            // Sensitivity
+            document.getElementById('revenue25').textContent = formatCurrency(revenue25);
+            document.getElementById('revenue50').textContent = formatCurrency(revenue50);
+            document.getElementById('revenue75').textContent = formatCurrency(revenue75);
+            document.getElementById('revenue100').textContent = formatCurrency(revenue100);
+            document.getElementById('profit25').textContent = formatCurrency(profit25);
+            document.getElementById('profit50').textContent = formatCurrency(profit50);
+            document.getElementById('profit75').textContent = formatCurrency(profit75);
+            document.getElementById('profit100').textContent = formatCurrency(profit100);
+            
+            // Future collections
+            document.getElementById('thresholdBagCost').textContent = formatCurrency(thresholdBagCost);
+            document.getElementById('nextGenUniformCost').textContent = formatCurrency(nextGenUniformCost);
+            
+            // Save data to localStorage
+            localStorage.setItem('calyptoData', JSON.stringify(data));
+        }
+        
+        // Update data object from input fields
+        function updateDataFromInputs() {
+            // Hoodie quantities
+            data.hoodieCoralTrue = parseInt(document.getElementById('hoodieCoralTrue').value) || 0;
+            data.hoodieCoralCyber = parseInt(document.getElementById('hoodieCoralCyber').value) || 0;
+            data.hoodieRedTrue = parseInt(document.getElementById('hoodieRedTrue').value) || 0;
+            data.hoodieRedCyber = parseInt(document.getElementById('hoodieRedCyber').value) || 0;
+            data.hoodieBlackTrue = parseInt(document.getElementById('hoodieBlackTrue').value) || 0;
+            data.hoodieBlackCyber = parseInt(document.getElementById('hoodieBlackCyber').value) || 0;
+            data.hoodieBlackNewHistory = parseInt(document.getElementById('hoodieBlackNewHistory').value) || 0;
+            
+            // T-shirt quantities
+            data.tshirtRegular = parseInt(document.getElementById('tshirtRegular').value) || 0;
+            data.tshirtLayered = parseInt(document.getElementById('tshirtLayered').value) || 0;
+            
+            // Manufacturing costs
+            data.hoodieCostMin = parseFloat(document.getElementById('hoodieCostMin').value) || 0;
+            data.hoodieCostMax = parseFloat(document.getElementById('hoodieCostMax').value) || 0;
+            data.regularTshirtCostMin = parseFloat(document.getElementById('regularTshirtCostMin').value) || 0;
+            data.regularTshirtCostMax = parseFloat(document.getElementById('regularTshirtCostMax').value) || 0;
+            data.layeredTshirtCostMin = parseFloat(document.getElementById('layeredTshirtCostMin').value) || 0;
+            data.layeredTshirtCostMax = parseFloat(document.getElementById('layeredTshirtCostMax').value) || 0;
+            
+            // Retail prices
+            data.hoodiePriceTrue = parseFloat(document.getElementById('hoodiePriceTrue').value) || 0;
+            data.hoodiePriceCyber = parseFloat(document.getElementById('hoodiePriceCyber').value) || 0;
+            data.regularTshirtPrice = parseFloat(document.getElementById('regularTshirtPrice').value) || 0;
+            data.layeredTshirtPrice = parseFloat(document.getElementById('layeredTshirtPrice').value) || 0;
+            
+            // Other costs
+            data.shippingCost = parseFloat(document.getElementById('shippingCost').value) || 0;
+            data.marketingCost = parseFloat(document.getElementById('marketingCost').value) || 0;
+            data.packagingCost = parseFloat(document.getElementById('packagingCost').value) || 0;
+            data.samplesCost = parseFloat(document.getElementById('samplesCost').value) || 0;
+            data.miscCost = parseFloat(document.getElementById('miscCost').value) || 0;
+        }
+        
+        // Export to Excel
+        function exportToExcel() {
+            // Simple CSV export (can be opened in Excel)
+            let csv = 'CALYPTO FIRST DROP FINANCIAL MODEL\n\n';
+            
+            // Product Quantities
+            csv += 'PRODUCT QUANTITIES\n';
+            csv += 'Product Type,Style/Color,Quantity\n';
+            csv += `Hoodies,Coral - True,${data.hoodieCoralTrue}\n`;
+            csv += `Hoodies,Coral - Cyber,${data.hoodieCoralCyber}\n`;
+            csv += `Hoodies,Red - True,${data.hoodieRedTrue}\n`;
+            csv += `Hoodies,Red - Cyber,${data.hoodieRedCyber}\n`;
+            csv += `Hoodies,Black - True,${data.hoodieBlackTrue}\n`;
+            csv += `Hoodies,Black - Cyber,${data.hoodieBlackCyber}\n`;
+            csv += `Hoodies,Black - New History,${data.hoodieBlackNewHistory}\n`;
+            csv += `T-shirts,Regular,${data.tshirtRegular}\n`;
+            csv += `T-shirts,Layered,${data.tshirtLayered}\n\n`;
+            
+            // Manufacturing Costs
+            csv += 'MANUFACTURING COSTS (NOK)\n';
+            csv += 'Product,Min Cost,Max Cost\n';
+            csv += `Hoodies,${data.hoodieCostMin},${data.hoodieCostMax}\n`;
+            csv += `Regular T-shirts,${data.regularTshirtCostMin},${data.regularTshirtCostMax}\n`;
+            csv += `Layered T-shirts,${data.layeredTshirtCostMin},${data.layeredTshirtCostMax}\n\n`;
+            
+            // Retail Prices
+            csv += 'RETAIL PRICES (NOK)\n';
+            csv += 'Product,Price\n';
+            csv += `True Style Hoodie,${data.hoodiePriceTrue}\n`;
+            csv += `Cyber Style Hoodie,${data.hoodiePriceCyber}\n`;
+            csv += `Regular T-shirts,${data.regularTshirtPrice}\n`;
+            csv += `Layered T-shirts,${data.layeredTshirtPrice}\n\n`;
+            
+            // Other Costs
+            csv += 'OTHER COSTS (NOK)\n';
+            csv += 'Category,Amount\n';
+            csv += `Shipping,${data.shippingCost}\n`;
+            csv += `Marketing,${data.marketingCost}\n`;
+            csv += `Packaging,${data.packagingCost}\n`;
+            csv += `Samples,${data.samplesCost}\n`;
+            csv += `Miscellaneous,${data.miscCost}\n\n`;
+            
+            // Get calculated totals from the DOM
+            csv += 'SUMMARY\n';
+            csv += 'Metric,Value\n';
+            csv += `Total Products,${document.getElementById('totalProducts').textContent}\n`;
+            csv += `Total Investment,${document.getElementById('totalInvestment').textContent}\n`;
+            csv += `Total Revenue,${document.getElementById('totalRevenue').textContent}\n`;
+            csv += `Total Profit,${document.getElementById('totalProfit').textContent}\n`;
+            csv += `Profit Margin,${document.getElementById('profitMargin').textContent}\n`;
+            csv += `ROI,${document.getElementById('roi').textContent}\n`;
+            
+            // Create and trigger download
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'Calypto_First_Drop_Financial_Model.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Reset all data
+        function resetData() {
+            if (confirm('Are you sure you want to reset all values to defaults?')) {
+                localStorage.removeItem('calyptoData');
+                location.reload();
+            }
+        }
+        
+        // Set up event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved data
+            loadSavedData();
+            
+            // Set event listeners for all input fields
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('change', calculateAll);
+                input.addEventListener('keyup', calculateAll);
+            });
+            
+            // Export button
+            document.getElementById('exportBtn').addEventListener('click', exportToExcel);
+            
+            // Reset button
+            document.getElementById('resetBtn').addEventListener('click', resetData);
+            
+            // Back to top functionality
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            
+            // Removed parallax effect on logo
+        });
+    </script>
+</body>
+</html>
