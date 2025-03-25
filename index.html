@@ -10,12 +10,18 @@
     <link rel="icon" type="image/png" href="Content/B_RED.png">
     <meta name="description" content="BALEX - Oslo-based designer specializing in blockchain technology, tokenization, and virtual fashion.">
     <style>
-        body {
-            background-color: #000000; /* Set background to pure black */
+        body, header, nav, main, section, footer, .container {
+            background-color: #000000 !important; /* Force pure black background */
         }
         
-        .navbar, .about-section, .card, footer {
-            background-color: #000000; /* Set background to pure black */
+        /* Remove red gradient background effect */
+        .about-section::before {
+            background: none !important; /* Override the radial gradient */
+        }
+        
+        /* Additional background enforcement for all section components */
+        .about-section, .about-image, .about-content {
+            background-color: #000000 !important;
         }
     </style>
 </head>

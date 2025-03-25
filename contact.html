@@ -13,6 +13,16 @@
         body, header, nav, main, section, footer, .container {
             background-color: #000000 !important; /* Force pure black background */
         }
+        
+        /* Remove red gradient background effect */
+        .contact-section::before {
+            background: none !important; /* Override the radial gradient */
+        }
+        
+        /* Additional background enforcement for all section components */
+        .contact-section, .contact-info, .collaboration-section {
+            background-color: #000000 !important;
+        }
     </style>
 </head>
 <body>
